@@ -1,13 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import SigninOne from "./forms/SigninOne";
+import Signin from "./forms/signin";
 import { Resizable } from "re-resizable";
 import ReactDOMServer from "react-dom/server";
 import IframeResizer from "iframe-resizer-react";
-// import beautify from "js-beautify/js/src/html";
-import pretty from "pretty";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import beautify from "js-beautify/js/src/html";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import markup from "react-syntax-highlighter/dist/cjs/languages/prism/markup";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 SyntaxHighlighter.registerLanguage("markup", markup);
 export default function components() {
@@ -15,23 +17,47 @@ export default function components() {
   const [toggle, setToggle] = useState("preview");
 
   const [loaded, setloaded] = useState(false);
-  console.log("load " + loaded);
+  const [theme, setTheme] = useState("");
+
+  const markup = ReactDOMServer.renderToStaticMarkup(<Signin />);
+
+  const handleClick = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+    setToggle("");
+    setToggle(toggle);
+  };
+
   useEffect(() => {
-    setloaded(true);
-    console.log("load " + loaded);
-  });
+    setTheme((theme) => (localStorage.theme ? localStorage.theme : "light"));
+    localStorage.theme = theme;
+    if (localStorage.theme === "dark" || theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
 
-  const markup = ReactDOMServer.renderToStaticMarkup(<SigninOne />);
-  // const prettymark = beautify(markup, {
-  //   indent_size: 2,
-  //   space_in_empty_paren: true,
-  //   type: ["html"],
-  // });
-
-  const prettymark = pretty(markup);
+  const prettymark = beautify(markup, {});
+  //console.log(prettymark);
 
   const adjustheight = () => {
     ref.current.resize();
+  };
+
+  const copiedtoClipboard = () => {
+    toast("🦄 Copied to Clipboard", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const iframeLoaded = () => {
+    console.log("iframe loaded");
   };
 
   const RightHandle = () => (
@@ -48,9 +74,40 @@ export default function components() {
 
   return (
     <>
-      I'm a compoennt page
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+      <button
+        onClick={handleClick}
+        className="absolute top-1.5 right-1.5 z-10 text-gray-500"
+      >
+        <svg
+          className="w-6 h-6"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </svg>
+      </button>
+
       <div className="mx-auto my-5 border rounded max-w-screen-2xl">
-        <div className="flex items-center justify-between px-4 py-2 bg-white border-b border-gray-200 sm:py-4 sm:px-6 sm:items-baseline">
+        <div className="flex items-center justify-between px-4 py-2 bg-white border-b border-gray-200 dark:bg-gray-800 sm:py-4 sm:px-6 sm:items-baseline">
           <div className="flex items-center flex-shrink min-w-0">
             <h3 className="flex-shrink min-w-0 text-base leading-snug truncate font-regular md:text-lg">
               <a href="#">Simple Sign In Page</a>
@@ -79,14 +136,18 @@ export default function components() {
               <button
                 type="button"
                 onClick={() => setToggle("preview")}
-                className="inline-block px-3 py-2 font-medium leading-none text-indigo-700 rounded-lg focus:outline-none bg-indigo-50"
+                className={`inline-block px-3 py-2 font-medium leading-none rounded-lg focus:outline-none ${
+                  toggle == "preview" && "text-indigo-700 bg-indigo-50"
+                }`}
               >
                 Preview
               </button>
               <button
                 type="button"
                 onClick={() => setToggle("code")}
-                className="inline-block px-3 py-2 ml-2 font-medium leading-none text-gray-500 rounded-lg focus:outline-none hover:text-indigo-600 focus:text-indigo-600"
+                className={`inline-block px-3 py-2 ml-2 font-medium leading-none text-gray-500 rounded-lg focus:outline-none hover:text-indigo-600 focus:text-indigo-600 ${
+                  toggle == "code" && "text-indigo-700 bg-indigo-50"
+                }`}
               >
                 Code
               </button>
@@ -95,26 +156,56 @@ export default function components() {
               <div className="self-stretch pl-4 pr-3">
                 <div className="h-full border-l border-gray-200"></div>
               </div>
-              <button
-                type="button"
-                className="ml-3 text-gray-400 hover:text-gray-500"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+              <CopyToClipboard text={prettymark} onCopy={copiedtoClipboard}>
+                <button
+                  type="button"
+                  className="flex items-center ml-3 text-gray-400 focus:outline-none hover:text-gray-500 focus:text-indigo-400"
                 >
-                  <title>Copy</title>
-                  <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                  <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
-                </svg>
-              </button>
+                  <svg
+                    className="w-5 h-5 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    />
+                  </svg>
+                  {"  "}
+                  Copy
+                </button>
+              </CopyToClipboard>
             </div>
           </div>
         </div>
         {toggle == "preview" && (
-          <div className="relative bg-gray-200 sm:pr-3">
-            {!loaded && (
+          <div className="relative bg-gray-200 sm:pr-3 ">
+            <Resizable
+              handleClasses={{
+                right:
+                  "sr-only z-10 sm:not-sr-only border-l border-r justify-center sm:bg-gray-100 bg-opacity-50  sm:flex sm:items-center",
+              }}
+              handleStyles={{ right: { width: "16px", right: "-13px" } }}
+              handleComponent={{
+                right: <RightHandle />,
+              }}
+              maxWidth="100%"
+              onResize={adjustheight}
+              minWidth="336"
+              enable={{
+                top: false,
+                right: true,
+                bottom: false,
+                left: false,
+                topRight: false,
+                bottomRight: false,
+                bottomLeft: false,
+                topLeft: false,
+              }}
+            >
               <div className="absolute z-0 w-5 h-5 text-black transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 ">
                 <svg
                   className="animate-spin"
@@ -137,38 +228,21 @@ export default function components() {
                   ></path>
                 </svg>
               </div>
-            )}
 
-            <Resizable
-              handleClasses={{
-                right:
-                  "sr-only sm:not-sr-only border-l border-r justify-center sm:bg-gray-100 bg-opacity-50  sm:flex sm:items-center",
-              }}
-              handleStyles={{ right: { width: "16px", right: "-13px" } }}
-              handleComponent={{
-                right: <RightHandle />,
-              }}
-              maxWidth="100%"
-              onResize={adjustheight}
-              minWidth="336"
-              enable={{
-                top: false,
-                right: true,
-                bottom: false,
-                left: false,
-                topRight: false,
-                bottomRight: false,
-                bottomLeft: false,
-                topLeft: false,
-              }}
-            >
               <IframeResizer
                 forwardRef={ref}
                 heightCalculationMethod="bodyOffset"
                 checkOrigin={false}
+                onInit={iframeLoaded}
                 resizeFrom="child"
                 src="/components/forms/signin"
-                style={{ width: "1px", minWidth: "100%", minHeight: "1px" }}
+                style={{
+                  width: "1px",
+                  minWidth: "100%",
+                  minHeight: "1px",
+                  zIndex: "1",
+                  position: "relative",
+                }}
               />
             </Resizable>
           </div>

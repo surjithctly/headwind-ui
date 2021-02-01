@@ -2,6 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 
 module.exports = {
+  darkMode: "class",
   purge: {
     mode: "all",
     content: [
@@ -17,7 +18,7 @@ module.exports = {
       center: true,
     },
     fontFamily: {
-      sans: ["Graphik", ...defaultTheme.fontFamily.sans],
+      sans: ["Inter", ...defaultTheme.fontFamily.sans],
       stock: [defaultTheme.fontFamily.sans],
     },
     extend: {
