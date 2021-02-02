@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "../styles/tailwind.css";
+//import "../styles/prism.css";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {

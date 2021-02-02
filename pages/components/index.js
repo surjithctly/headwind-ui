@@ -23,7 +23,7 @@ export default function components() {
 
   const handleClick = () => {
     setTheme(theme === "dark" ? "light" : "dark");
-    setToggle("");
+    setToggle("cc");
     setToggle(toggle);
   };
 
