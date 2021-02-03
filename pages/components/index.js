@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import Signin from "./forms/signin";
 import { Resizable } from "re-resizable";
 import ReactDOMServer from "react-dom/server";
@@ -110,7 +111,11 @@ export default function components() {
         <div className="flex items-center justify-between px-4 py-2 bg-white border-b border-gray-200 dark:bg-gray-800 sm:py-4 sm:px-6 sm:items-baseline">
           <div className="flex items-center flex-shrink min-w-0">
             <h3 className="flex-shrink min-w-0 text-base leading-snug truncate font-regular md:text-lg">
-              <a href="#">Simple Sign In Page</a>
+              <Link href="components/forms/signin">
+                <a className="flex items-center">
+                  <span className="mr-3">Simple Sign In Page</span>
+                </a>
+              </Link>
             </h3>
           </div>
           <div className="flex items-center flex-shrink-0 ml-4">
