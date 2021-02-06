@@ -12,12 +12,16 @@ export default function Navbar(props) {
       >
         <nav className="flex items-center justify-center py-4">
           <div className=" sm:mr-auto">
-            <img
-              src="/img/headwind-logo.svg"
-              width="200"
-              height="32"
-              alt="Headwind UI"
-            />
+            <Link href="/">
+              <a>
+                <img
+                  src="/img/headwind-logo.svg"
+                  width="200"
+                  height="32"
+                  alt="Headwind UI"
+                />
+              </a>
+            </Link>
           </div>
 
           <div className="hidden sm:block">
