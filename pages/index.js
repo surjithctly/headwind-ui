@@ -24,7 +24,7 @@ export default function Home() {
 
           <div>
             <p className="max-w-2xl mx-auto my-2 text-lg leading-relaxed text-gray-500 md:text-xl">
-              Headwind UI is a growing collection of 100+ pre-built, fully
+              This library is a growing collection of 100+ pre-built, fully
               responsive HTML components you can drop into your Tailwind
               projects.
             </p>

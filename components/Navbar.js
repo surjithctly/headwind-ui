@@ -15,10 +15,10 @@ export default function Navbar(props) {
             <Link href="/">
               <a>
                 <img
-                  src="/img/headwind-logo.svg"
-                  width="200"
-                  height="32"
-                  alt="Headwind UI"
+                  src="/img/w3t-logo.svg"
+                  width="90"
+                  height="36"
+                  alt="Web3Templates"
                 />
               </a>
             </Link>
