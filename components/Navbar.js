@@ -1,10 +1,15 @@
 import Link from "next/link";
 import React from "react";
 
-export default function Navbar() {
+export default function Navbar(props) {
+  const staticNav = props.staticNav;
   return (
     <>
-      <div className="fixed top-0 w-full px-6 bg-white border-b">
+      <div
+        className={`${
+          staticNav ? "" : "fixed"
+        } top-0 w-full px-6 bg-white border-b`}
+      >
         <nav className="flex items-center justify-center py-4">
           <div className=" sm:mr-auto">
             <img
