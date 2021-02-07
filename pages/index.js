@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Headwind UI</title>
+        <title>Web3Templates — TailwindCSS Components</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

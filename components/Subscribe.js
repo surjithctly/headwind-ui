@@ -14,7 +14,7 @@ export default function Subscribe() {
 
     const subscribe_data = {
       email: data.email,
-      tags: ["headwind"],
+      tags: ["tailwind"],
     };
 
     await fetch("/api/subscribe", {
