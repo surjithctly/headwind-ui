@@ -19,14 +19,20 @@ export default function Subscribe() {
 
     await fetch("/api/subscribe", {
       method: "POST",
-      body: subscribe_data,
+      body: JSON.stringify(subscribe_data, null, 4),
     })
       .then(async (response) => {
-        console.log(response.body);
-        setIsSuccess(true);
-        setMessage("Success! You've been add to our list");
-        e.target.reset();
-        reset();
+        const result = await response.json();
+        if (result.success === true) {
+          setIsSuccess(true);
+          setMessage("Success! You've been added to our list");
+          e.target.reset();
+          reset();
+        } else {
+          setIsSuccess(false);
+          setMessage("Oops, Something went wrong! Please try again");
+          console.log(result);
+        }
       })
       .catch((error) => {
         setIsSuccess(false);

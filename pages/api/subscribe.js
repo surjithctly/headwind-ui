@@ -9,21 +9,33 @@ export default async (req, res) => {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
-    body: JSON.stringify(req.body, null, 2),
+    body: req.body,
   })
-    .then((response) => {
-      console.log(response);
-
-      if (response.status == 200) {
+    .then(async (response) => {
+      const result = await response.json();
+      //console.log(result);
+      if (response.status === 201) {
         res.statusCode = 200;
-        res.json(response.body);
+        res.json({
+          success: true,
+          message: "Success! Subscribed to the list",
+          data: result,
+        });
       } else {
         res.statusCode = response.status;
-        res.json(response.statusText);
+        res.json({
+          success: false,
+          message: "Sorry! Could not complete the request",
+          data: result,
+        });
       }
     })
     .catch((error) => {
       res.statusCode = 400;
-      res.json(error);
+      res.json({
+        success: false,
+        message: "Sorry! Unexpected Error Occured",
+        data: error,
+      });
     });
 };

@@ -153,7 +153,7 @@ export default function Preview(props) {
             <div className="items-center hidden text-sm sm:flex md:text-base">
               <a
                 href={playlink}
-                className="opacity-75 hover:opacity-100"
+                className="hidden opacity-75 hover:opacity-100 md:inline"
                 target="_blank"
                 title="Edit code on Tailwind Play"
               >
@@ -167,13 +167,13 @@ export default function Preview(props) {
                   <path
                     d="M90.9166 5.25001H87.75C87.33 5.25001 86.9273 5.41682 86.6304 5.71375C86.3334 6.01069 86.1666 6.41341 86.1666 6.83334V14.75C86.1666 15.1699 86.3334 15.5727 86.6304 15.8696C86.9273 16.1665 87.33 16.3333 87.75 16.3333H95.6666C96.0866 16.3333 96.4893 16.1665 96.7862 15.8696C97.0831 15.5727 97.25 15.1699 97.25 14.75V11.5833M94.0833 3.66667H98.8333M98.8333 3.66667V8.41667M98.8333 3.66667L90.9166 11.5833"
                     stroke="#595959"
-                    stroke-width="1.58333"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.58333"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M12.5 3.00076C9.16672 3.00076 7.08313 4.66768 6.25 8.00076C7.50046 6.3346 8.95805 5.70865 10.6251 6.12595C11.5762 6.36354 12.2555 7.05346 13.0087 7.81648C14.2333 9.06077 15.652 10.5008 18.7508 10.5008C22.0833 10.5008 24.1669 8.83384 25 5.50076C23.7503 7.16768 22.2919 7.79287 20.6249 7.37557C19.6745 7.13798 18.9952 6.44807 18.2421 5.68504C17.0167 4.44076 15.598 3 12.5 3V3.00076ZM6.25 10.5008C2.91672 10.5008 0.83313 12.1677 0 15.5008C1.2497 13.8338 2.70805 13.2087 4.37508 13.6252C5.32625 13.8635 6.00554 14.5527 6.75871 15.3165C7.98328 16.5608 9.40204 18 12.5008 18C15.8333 18 17.9169 16.3338 18.75 13.0008C17.5003 14.6669 16.0419 15.2921 14.3749 14.8756C13.4245 14.638 12.7452 13.9481 11.992 13.185C10.766 11.9408 9.34797 10.5008 6.25 10.5008V10.5008Z"
                     fill="#16BDCA"
                   />
@@ -183,7 +183,7 @@ export default function Preview(props) {
                   />
                 </svg>
               </a>
-              <div className="self-stretch pl-4 pr-4">
+              <div className="self-stretch hidden pl-4 pr-4 md:inline">
                 <div className="h-full border-l border-gray-200"></div>
               </div>
               <button
@@ -239,7 +239,7 @@ export default function Preview(props) {
             <Resizable
               handleClasses={{
                 right:
-                  "sr-only z-10 sm:not-sr-only border-l border-r justify-center sm:bg-gray-100 bg-opacity-50  sm:flex sm:items-center",
+                  "hidden sr-only z-10 sm:not-sr-only border-l border-r justify-center sm:bg-gray-100 bg-opacity-50  sm:flex sm:items-center",
               }}
               handleStyles={{ right: { width: "16px", right: "-13px" } }}
               handleComponent={{
