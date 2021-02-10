@@ -117,11 +117,11 @@ export default function Preview(props) {
         </svg>
       </button> */}
 
-      <div className="mx-auto my-5 border rounded max-w-screen-2xl">
+      <div className="mx-auto my-10 border rounded max-w-screen-2xl">
         <div className="flex items-center justify-between px-4 py-2 bg-white border-b border-gray-200 dark:bg-gray-800 sm:py-4 sm:px-6 sm:items-baseline">
           <div className="flex items-center flex-shrink min-w-0">
             <h3 className="flex-shrink min-w-0 text-base leading-snug truncate font-regular md:text-lg">
-              <Link href="components/forms/signin">
+              <Link href={componentPath}>
                 <a className="flex items-center">
                   <span className="mr-3">{componentTitle}</span>
                 </a>

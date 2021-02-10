@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar";
 import Subscribe from "../../components/Subscribe";
 import Preview from "../../components/Preview";
 import Signin from "./forms/signin";
+import FloatingLabel from "./forms/floating-label";
 import Table from "./data/table";
 
 export default function index() {
@@ -16,6 +17,13 @@ export default function index() {
           title="Simple Sign In page"
           path="/components/forms/signin"
           play="https://play.tailwindcss.com/sMSGuAJ53m"
+        />
+
+        <Preview
+          page={<FloatingLabel />}
+          title="Floating Label"
+          path="/components/forms/floating-label"
+          play="https://play.tailwindcss.com/B0dx0hvQJC"
         />
 
         <Preview

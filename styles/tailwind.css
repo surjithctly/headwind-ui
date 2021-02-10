@@ -4,6 +4,11 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+pre {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
 .react-resizable {
   position: relative;
 }
