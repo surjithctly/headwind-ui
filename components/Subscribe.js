@@ -1,7 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export default function Subscribe() {
+export default function Subscribe(props) {
+  const { type } = props;
   const { register, handleSubmit, errors, reset, formState } = useForm({
     mode: "onTouched",
   });
@@ -14,7 +15,7 @@ export default function Subscribe() {
 
     const subscribe_data = {
       email: data.email,
-      tags: ["tailwind"],
+      tags: [data.tags],
     };
 
     await fetch("/api/subscribe", {
@@ -46,15 +47,34 @@ export default function Subscribe() {
       <div className="flex flex-wrap items-center w-full max-w-5xl p-5 mx-auto text-left border border-gray-200 rounded lg:flex-nowrap md:p-8">
         <div className="flex-1 w-full mb-5 md:mb-0 md:pr-5 lg:pr-10 md:w-1/2">
           <h3 className="mb-2 text-2xl font-bold text-gray-700">
-            New Components every week!
+            {type == "components"
+              ? `New Components every week!`
+              : `Subscribe to Get Early Access`}
           </h3>
           <p className="text-gray-500">
-            Provide your email to get updates and notification when we release
-            new components
+            {type == "components"
+              ? `Provide your email to get weekly updates and notification when we release new components`
+              : `Provide your email to get email notification when we launch early beta access`}
           </p>
         </div>
         <div className="w-full px-1 flex-0 md:w-auto lg:w-1/2">
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            {type == "components" ? (
+              <input
+                type="hidden"
+                name="tags"
+                value="components"
+                ref={register}
+              />
+            ) : (
+              <input
+                type="hidden"
+                name="tags"
+                value="earlyaccess"
+                ref={register}
+              />
+            )}
+
             <div className="flex flex-col sm:flex-row">
               <input
                 type="email"
@@ -96,7 +116,7 @@ export default function Subscribe() {
                     ></path>
                   </svg>
                 ) : (
-                  "Notify me"
+                  ` ${type == "components" ? "Notify me" : "Get Notified"} `
                 )}
               </button>
             </div>

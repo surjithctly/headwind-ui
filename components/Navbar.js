@@ -25,17 +25,25 @@ export default function Navbar(props) {
           </div>
 
           <div className="hidden sm:block">
+            <Link href="/">
+              <a
+                className="mr-10 text-gray-300 cursor-not-allowed"
+                title="coming soon"
+              >
+                Templates
+              </a>
+            </Link>
             <Link href="/components">
               <a className="mr-10 text-gray-500">Components</a>
             </Link>{" "}
-            <Link href="/">
+            {/* <Link href="/">
               <a
                 className="text-gray-300 cursor-not-allowed"
                 title="coming soon"
               >
                 Documentation
               </a>
-            </Link>
+            </Link> */}
           </div>
         </nav>
       </div>

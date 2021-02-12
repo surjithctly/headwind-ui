@@ -21,7 +21,7 @@ export default function Preview(props) {
   const playlink = props.play;
   const ref = useRef(null);
   const [toggle, setToggle] = useState("preview");
-
+  const [codetab, setCodetab] = useState("html");
   const [copied, setcopied] = useState(false);
   const [theme, setTheme] = useState("");
 
@@ -150,7 +150,7 @@ export default function Preview(props) {
                 </svg>
               </button>
             </div>
-            <div className="items-center hidden text-sm sm:flex md:text-base">
+            <div className="items-center hidden text-sm sm:flex">
               <a
                 href={playlink}
                 className="hidden opacity-75 hover:opacity-100 md:inline"
@@ -159,6 +159,7 @@ export default function Preview(props) {
               >
                 <svg
                   width="102"
+                  className="w-20"
                   height="20"
                   viewBox="0 0 102 20"
                   fill="none"
@@ -198,11 +199,22 @@ export default function Preview(props) {
               <button
                 type="button"
                 onClick={() => setToggle("code")}
-                className={`inline-block px-3 py-2 ml-2 font-medium leading-none text-gray-500 rounded-lg focus:outline-none hover:text-indigo-600 focus:text-indigo-600 ${
+                className={`flex items-center px-3 py-2 ml-2 font-medium leading-none text-gray-500 rounded-lg focus:outline-none hover:text-indigo-600 focus:text-indigo-600 ${
                   toggle == "code" && "text-indigo-700 bg-indigo-50"
                 }`}
               >
-                Code
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+                <span className="ml-2"> Code </span>
               </button>
             </div>
             <div className="hidden sm:flex sm:items-center">
@@ -212,7 +224,7 @@ export default function Preview(props) {
               <CopyToClipboard text={prettymark} onCopy={copiedtoClipboard}>
                 <button
                   type="button"
-                  className="flex items-center ml-3 text-gray-400 focus:outline-none hover:text-gray-500 focus:text-indigo-400"
+                  className="flex items-center ml-3 text-sm text-gray-400 focus:outline-none hover:text-gray-500 focus:text-indigo-400"
                 >
                   <svg
                     className="w-5 h-5 mr-1"
@@ -302,6 +314,48 @@ export default function Preview(props) {
         )}
         {toggle == "code" && (
           <div className="w-full overflow-auto">
+            <div className="flex items-stretch content-center w-full h-10 space-x-4 text-white bg-gray-700">
+              <button
+                onClick={() => setCodetab("html")}
+                className={`flex items-center px-5  focus:outline-none  ${
+                  codetab === "html"
+                    ? "text-gray-200 bg-gray-800"
+                    : "text-gray-400"
+                }`}
+              >
+                HTML
+              </button>
+              <button
+                onClick={() => setCodetab("react")}
+                className={`flex items-center px-5 focus:outline-none  ${
+                  codetab === "react"
+                    ? "text-gray-200 bg-gray-800"
+                    : "text-gray-400"
+                }`}
+              >
+                React
+              </button>
+              <button
+                onClick={() => setCodetab("css")}
+                className={`flex items-center px-5  focus:outline-none  ${
+                  codetab === "css"
+                    ? "text-gray-200 bg-gray-800"
+                    : "text-gray-400"
+                }`}
+              >
+                tailwind.css
+              </button>
+              <button
+                onClick={() => setCodetab("config")}
+                className={`flex items-center px-5  focus:outline-none  ${
+                  codetab == "config"
+                    ? "text-gray-200 bg-gray-800"
+                    : "text-gray-400"
+                }`}
+              >
+                tailwind.config.css
+              </button>
+            </div>
             <SyntaxHighlighter
               language="markup"
               style={dracula}
