@@ -19,6 +19,7 @@ export default function Preview(props) {
   const componentPath = props.path;
   const componentTitle = props.title;
   const playlink = props.play;
+  const { html, react, css, config } = props;
   const ref = useRef(null);
   const [toggle, setToggle] = useState("preview");
   const [codetab, setCodetab] = useState("html");
@@ -76,8 +77,7 @@ export default function Preview(props) {
       <svg
         className="w-4 h-4 text-gray-600"
         fill="currentColor"
-        viewBox="0 0 24 24"
-      >
+        viewBox="0 0 24 24">
         <path d="M8 5h2v14H8zM14 5h2v14h-2z"></path>
       </svg>
     </>
@@ -135,18 +135,15 @@ export default function Preview(props) {
                 onClick={() =>
                   setToggle(toggle === "code" ? "preview" : "code")
                 }
-                className="inline-block px-3 py-3 font-medium leading-none text-gray-400 rounded-lg focus:outline-none hover:text-gray-600 focus:text-gray-600"
-              >
+                className="inline-block px-3 py-3 font-medium leading-none text-gray-400 rounded-lg focus:outline-none hover:text-gray-600 focus:text-gray-600">
                 <svg
                   className="w-5 h-5"
                   fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
+                  viewBox="0 0 20 20">
                   <path
                     fillRule="evenodd"
                     d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
+                    clipRule="evenodd"></path>
                 </svg>
               </button>
             </div>
@@ -155,16 +152,14 @@ export default function Preview(props) {
                 href={playlink}
                 className="hidden opacity-75 hover:opacity-100 md:inline"
                 target="_blank"
-                title="Edit code on Tailwind Play"
-              >
+                title="Edit code on Tailwind Play">
                 <svg
                   width="102"
                   className="w-20"
                   height="20"
                   viewBox="0 0 102 20"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                  xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M90.9166 5.25001H87.75C87.33 5.25001 86.9273 5.41682 86.6304 5.71375C86.3334 6.01069 86.1666 6.41341 86.1666 6.83334V14.75C86.1666 15.1699 86.3334 15.5727 86.6304 15.8696C86.9273 16.1665 87.33 16.3333 87.75 16.3333H95.6666C96.0866 16.3333 96.4893 16.1665 96.7862 15.8696C97.0831 15.5727 97.25 15.1699 97.25 14.75V11.5833M94.0833 3.66667H98.8333M98.8333 3.66667V8.41667M98.8333 3.66667L90.9166 11.5833"
                     stroke="#595959"
@@ -192,8 +187,7 @@ export default function Preview(props) {
                 onClick={() => setToggle("preview")}
                 className={`inline-block px-3 py-2 font-medium leading-none rounded-lg focus:outline-none ${
                   toggle == "preview" && "text-indigo-700 bg-indigo-50"
-                }`}
-              >
+                }`}>
                 Preview
               </button>
               <button
@@ -201,48 +195,18 @@ export default function Preview(props) {
                 onClick={() => setToggle("code")}
                 className={`flex items-center px-3 py-2 ml-2 font-medium leading-none text-gray-500 rounded-lg focus:outline-none hover:text-indigo-600 focus:text-indigo-600 ${
                   toggle == "code" && "text-indigo-700 bg-indigo-50"
-                }`}
-              >
+                }`}>
                 <svg
                   className="w-5 h-5"
                   fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
+                  viewBox="0 0 20 20">
                   <path
                     fillRule="evenodd"
                     d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
+                    clipRule="evenodd"></path>
                 </svg>
                 <span className="ml-2"> Code </span>
               </button>
-            </div>
-            <div className="hidden sm:flex sm:items-center">
-              <div className="self-stretch pl-4 pr-3">
-                <div className="h-full border-l border-gray-200"></div>
-              </div>
-              <CopyToClipboard text={prettymark} onCopy={copiedtoClipboard}>
-                <button
-                  type="button"
-                  className="flex items-center ml-3 text-sm text-gray-400 focus:outline-none hover:text-gray-500 focus:text-indigo-400"
-                >
-                  <svg
-                    className="w-5 h-5 mr-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                    />
-                  </svg>
-                  {"  "}
-                  {copied ? "Copied" : "Copy"}
-                </button>
-              </CopyToClipboard>
             </div>
           </div>
         </div>
@@ -269,28 +233,24 @@ export default function Preview(props) {
                 bottomRight: false,
                 bottomLeft: false,
                 topLeft: false,
-              }}
-            >
+              }}>
               <div className="absolute z-0 w-5 h-5 text-black transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 ">
                 <svg
                   className="animate-spin"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
-                  viewBox="0 0 24 24"
-                >
+                  viewBox="0 0 24 24">
                   <circle
                     className="opacity-25"
                     cx="12"
                     cy="12"
                     r="10"
                     stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
+                    strokeWidth="4"></circle>
                   <path
                     className="opacity-75"
                     fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
               </div>
 
@@ -314,55 +274,94 @@ export default function Preview(props) {
         )}
         {toggle == "code" && (
           <div className="w-full overflow-auto">
-            <div className="flex items-stretch content-center w-full h-10 space-x-4 text-white bg-gray-700">
-              <button
-                onClick={() => setCodetab("html")}
-                className={`flex items-center px-5  focus:outline-none  ${
-                  codetab === "html"
-                    ? "text-gray-200 bg-gray-800"
-                    : "text-gray-400"
-                }`}
-              >
-                HTML
-              </button>
-              <button
-                onClick={() => setCodetab("react")}
-                className={`flex items-center px-5 focus:outline-none  ${
-                  codetab === "react"
-                    ? "text-gray-200 bg-gray-800"
-                    : "text-gray-400"
-                }`}
-              >
-                React
-              </button>
-              <button
-                onClick={() => setCodetab("css")}
-                className={`flex items-center px-5  focus:outline-none  ${
-                  codetab === "css"
-                    ? "text-gray-200 bg-gray-800"
-                    : "text-gray-400"
-                }`}
-              >
-                tailwind.css
-              </button>
-              <button
-                onClick={() => setCodetab("config")}
-                className={`flex items-center px-5  focus:outline-none  ${
-                  codetab == "config"
-                    ? "text-gray-200 bg-gray-800"
-                    : "text-gray-400"
-                }`}
-              >
-                tailwind.config.css
-              </button>
+            <div className="flex justify-between w-full h-10 space-x-4 text-white bg-gray-700">
+              <div className="flex items-stretch content-center">
+                <button
+                  onClick={() => setCodetab("html")}
+                  className={`flex items-center px-5  focus:outline-none  ${
+                    codetab === "html"
+                      ? "text-gray-200 bg-gray-800"
+                      : "text-gray-400"
+                  }`}>
+                  HTML
+                </button>
+                <button
+                  onClick={() => setCodetab("react")}
+                  className={`flex items-center px-5 focus:outline-none  ${
+                    codetab === "react"
+                      ? "text-gray-200 bg-gray-800"
+                      : "text-gray-400"
+                  }`}>
+                  React
+                </button>
+                <button
+                  onClick={() => setCodetab("css")}
+                  className={`flex items-center px-5  focus:outline-none  ${
+                    codetab === "css"
+                      ? "text-gray-200 bg-gray-800"
+                      : "text-gray-400"
+                  }`}>
+                  tailwind.css
+                </button>
+                <button
+                  onClick={() => setCodetab("config")}
+                  className={`flex items-center px-5  focus:outline-none  ${
+                    codetab == "config"
+                      ? "text-gray-200 bg-gray-800"
+                      : "text-gray-400"
+                  }`}>
+                  tailwind.config.css
+                </button>
+              </div>
+
+              <div className="hidden ml-autojustify-self-end sm:flex sm:items-center">
+                <CopyToClipboard text={html} onCopy={copiedtoClipboard}>
+                  <button
+                    type="button"
+                    className="flex items-center ml-3 mr-4 text-sm text-indigo-200 focus:outline-none hover:text-white focus:text-indigo-100">
+                    <svg
+                      className="w-5 h-5 mr-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      />
+                    </svg>
+                    {"  "}
+                    {copied ? "Copied" : "Copy"}
+                  </button>
+                </CopyToClipboard>
+              </div>
             </div>
-            <SyntaxHighlighter
-              language="markup"
-              style={dracula}
-              showLineNumbers
-            >
-              {prettymark}
-            </SyntaxHighlighter>
+
+            {codetab === "html" && (
+              <SyntaxHighlighter
+                language="markup"
+                style={dracula}
+                showLineNumbers>
+                {html}
+              </SyntaxHighlighter>
+            )}
+            {codetab === "react" && (
+              <SyntaxHighlighter language="jsx" style={dracula} showLineNumbers>
+                {react}
+              </SyntaxHighlighter>
+            )}
+
+            {codetab === "css" && (
+              <SyntaxHighlighter language="css" style={dracula} showLineNumbers>
+                {css}
+              </SyntaxHighlighter>
+            )}
+            {codetab === "config" && (
+              <SyntaxHighlighter language="js" style={dracula} showLineNumbers>
+                {config}
+              </SyntaxHighlighter>
+            )}
           </div>
         )}
       </div>

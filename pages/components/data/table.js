@@ -28,7 +28,7 @@ export default function table() {
                           type="checkbox"
                           name="select_all"
                           id="select_all"
-                          className="w-4 h-4 rounded opacity-50"
+                          className="w-4 h-4 text-indigo-500 border border-gray-200 rounded focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
                         />
                       </div>
                     </th>

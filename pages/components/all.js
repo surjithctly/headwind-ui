@@ -5,6 +5,7 @@ import Preview from "../../components/Preview";
 import Signin from "./forms/signin";
 import FloatingLabel from "./forms/floating-label";
 import Table from "./data/table";
+import { html, react, css, configs } from "./forms/code";
 
 export default function index() {
   return (
@@ -14,6 +15,10 @@ export default function index() {
       <div className="px-5">
         <Preview
           page={<Signin />}
+          html={html}
+          react={react}
+          css={css}
+          config={configs}
           title="Simple Sign In page"
           path="/components/forms/signin"
           play="https://play.tailwindcss.com/sMSGuAJ53m"

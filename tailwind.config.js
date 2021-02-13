@@ -34,5 +34,5 @@ module.exports = {
   future: {
     purgeLayersByDefault: true,
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };

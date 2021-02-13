@@ -10,8 +10,7 @@ export default function signin() {
           async
           src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.contentWindow.min.js"
           integrity="sha512-qw2bX9KUhi7HLuUloyRsvxRlWJvj0u0JWVegc5tf7qsw47T0pwXZIk1Kyc0utTH3NlrpHtLa4HYTVUyHBr9Ufg=="
-          crossOrigin="anonymous"
-        ></script>
+          crossOrigin="anonymous"></script>
 
         <script></script>
       </Head>
@@ -34,8 +33,7 @@ export default function signin() {
                 <div className="mb-6">
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     Email Address
                   </label>
 
@@ -52,15 +50,13 @@ export default function signin() {
                   <div className="flex justify-between mb-2">
                     <label
                       htmlFor="password"
-                      className="text-sm text-gray-600 dark:text-gray-400"
-                    >
+                      className="text-sm text-gray-600 dark:text-gray-400">
                       Password
                     </label>
 
                     <a
                       href="#!"
-                      className="text-sm text-gray-400 focus:outline-none focus:text-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-300"
-                    >
+                      className="text-sm text-gray-400 focus:outline-none focus:text-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-300">
                       Forgot password?
                     </a>
                   </div>
@@ -77,8 +73,7 @@ export default function signin() {
                 <div className="mb-6">
                   <button
                     type="button"
-                    className="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none"
-                  >
+                    className="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">
                     Sign in
                   </button>
                 </div>
@@ -86,8 +81,7 @@ export default function signin() {
                   Don't have an account yet?{" "}
                   <a
                     href="#!"
-                    className="text-indigo-400 focus:outline-none focus:underline focus:text-indigo-500 dark:focus:border-indigo-800"
-                  >
+                    className="text-indigo-400 focus:outline-none focus:underline focus:text-indigo-500 dark:focus:border-indigo-800">
                     Sign up
                   </a>
                   .
