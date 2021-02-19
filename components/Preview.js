@@ -343,7 +343,7 @@ export default function Preview(props) {
                 language="markup"
                 style={dracula}
                 showLineNumbers>
-                {html}
+                {prettymark}
               </SyntaxHighlighter>
             )}
             {codetab === "react" && (
