@@ -99,7 +99,7 @@ export default function index() {
       </div>
 
       <div className="w-full px-5 mt-auto mb-10 ">
-        <Subscribe />
+        <Subscribe type="components" />
       </div>
     </>
   );
