@@ -30,9 +30,5 @@ module.exports = {
     },
   },
   variants: { colors: ["hover"] },
-  experimental: "all",
-  future: {
-    purgeLayersByDefault: true,
-  },
   plugins: [require("@tailwindcss/forms")],
 };
