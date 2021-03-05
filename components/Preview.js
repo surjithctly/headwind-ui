@@ -51,6 +51,21 @@ export default function Preview(props) {
     ref.current.resize();
   };
 
+  const codetoCopy = (params) => {
+    switch (params) {
+      case "html":
+        return html ? html : prettymark;
+      case "react":
+        return react;
+      case "css":
+        return css;
+      case "config":
+        return config;
+      default:
+        return html;
+    }
+  };
+
   const copiedtoClipboard = () => {
     setcopied(true);
 
@@ -285,37 +300,45 @@ export default function Preview(props) {
                   }`}>
                   HTML
                 </button>
-                <button
-                  onClick={() => setCodetab("react")}
-                  className={`flex items-center px-5 focus:outline-none  ${
-                    codetab === "react"
-                      ? "text-gray-200 bg-gray-800"
-                      : "text-gray-400"
-                  }`}>
-                  React
-                </button>
-                <button
-                  onClick={() => setCodetab("css")}
-                  className={`flex items-center px-5  focus:outline-none  ${
-                    codetab === "css"
-                      ? "text-gray-200 bg-gray-800"
-                      : "text-gray-400"
-                  }`}>
-                  tailwind.css
-                </button>
-                <button
-                  onClick={() => setCodetab("config")}
-                  className={`flex items-center px-5  focus:outline-none  ${
-                    codetab == "config"
-                      ? "text-gray-200 bg-gray-800"
-                      : "text-gray-400"
-                  }`}>
-                  tailwind.config.css
-                </button>
+                {react && (
+                  <button
+                    onClick={() => setCodetab("react")}
+                    className={`flex items-center px-5 focus:outline-none  ${
+                      codetab === "react"
+                        ? "text-gray-200 bg-gray-800"
+                        : "text-gray-400"
+                    }`}>
+                    React
+                  </button>
+                )}
+                {css && (
+                  <button
+                    onClick={() => setCodetab("css")}
+                    className={`flex items-center px-5  focus:outline-none  ${
+                      codetab === "css"
+                        ? "text-gray-200 bg-gray-800"
+                        : "text-gray-400"
+                    }`}>
+                    tailwind.css
+                  </button>
+                )}
+                {config && (
+                  <button
+                    onClick={() => setCodetab("config")}
+                    className={`flex items-center px-5  focus:outline-none  ${
+                      codetab == "config"
+                        ? "text-gray-200 bg-gray-800"
+                        : "text-gray-400"
+                    }`}>
+                    tailwind.config.css
+                  </button>
+                )}
               </div>
 
               <div className="hidden ml-autojustify-self-end sm:flex sm:items-center">
-                <CopyToClipboard text={html} onCopy={copiedtoClipboard}>
+                <CopyToClipboard
+                  text={codetoCopy(codetab)}
+                  onCopy={copiedtoClipboard}>
                   <button
                     type="button"
                     className="flex items-center ml-3 mr-4 text-sm text-indigo-200 focus:outline-none hover:text-white focus:text-indigo-100">
@@ -343,23 +366,23 @@ export default function Preview(props) {
                 language="markup"
                 style={dracula}
                 showLineNumbers>
-                {prettymark}
+                {html ? html : prettymark}
               </SyntaxHighlighter>
             )}
             {codetab === "react" && (
               <SyntaxHighlighter language="jsx" style={dracula} showLineNumbers>
-                {react}
+                {react && react}
               </SyntaxHighlighter>
             )}
 
             {codetab === "css" && (
               <SyntaxHighlighter language="css" style={dracula} showLineNumbers>
-                {css}
+                {css && css}
               </SyntaxHighlighter>
             )}
             {codetab === "config" && (
               <SyntaxHighlighter language="js" style={dracula} showLineNumbers>
-                {config}
+                {config && config}
               </SyntaxHighlighter>
             )}
           </div>

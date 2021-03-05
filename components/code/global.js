@@ -1,4 +1,11 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
+export const css = `@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+`;
+
+export const configs = `const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 
 module.exports = {
@@ -31,11 +38,14 @@ module.exports = {
         cyan: colors.cyan,
         emerald: colors.emerald,
       },
-      gridTemplateColumns: {
-        fr: "260px 1fr",
-      },
     },
   },
   variants: { colors: ["hover"] },
+  experimental: "all",
+  future: {
+    purgeLayersByDefault: true,
+  },
   plugins: [require("@tailwindcss/forms")],
 };
+
+  `;

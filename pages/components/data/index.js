@@ -2,13 +2,8 @@ import React from "react";
 import Navbar from "components/Navbar";
 import Subscribe from "components/Subscribe";
 import Preview from "components/Preview";
-import Signin, { react as signinReact } from "./forms/signin";
-import FloatingLabel from "./forms/floating-label";
-import Table from "./data/table";
-import MetricsDefault from "./cards/metrics-default";
-import MetricsStacked from "./cards/metrics-stacked";
-import MetricsMinimal from "./cards/metrics-minimal";
-import MetricsIcon from "./cards/metrics-icon";
+import Table from "./table";
+
 import { css, configs } from "components/code/global";
 //import fs from "fs";
 
@@ -26,12 +21,22 @@ export default function index() {
     <>
       <Navbar staticNav="true" />
 
-      <div className="grid grid-cols-4 gap-4">
-        <div>1</div>
-        <div>9</div>
-        <div>1</div>
-        <div>9</div>
-      </div>
+      {/* <div className="grid grid-cols-12 gap-4">
+        <div className="col-span-3">1</div>
+        <div className="col-span-9">9</div>
+      </div> */}
+
+      <div className="px-5">
+
+
+        <Preview
+          page={<Table />}
+          css={css}
+          config={configs}
+          title="Responsive Table"
+          path="/components/data/table"
+          play="https://play.tailwindcss.com/CAmK0XxhLk"
+        />
 
       <div className="w-full px-5 mt-auto mb-10 ">
         <Subscribe type="components" />
