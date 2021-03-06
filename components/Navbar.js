@@ -8,8 +8,7 @@ export default function Navbar(props) {
       <div
         className={`${
           staticNav ? "" : "fixed"
-        } top-0 w-full px-6 bg-white border-b`}
-      >
+        } top-0 w-full px-5 md:px-10 2xl:px-16 bg-white border-b`}>
         <nav className="flex items-center justify-center py-4">
           <div className=" sm:mr-auto">
             <Link href="/">
@@ -24,17 +23,16 @@ export default function Navbar(props) {
             </Link>
           </div>
 
-          <div className="hidden sm:block">
+          <div className="hidden space-x-10 sm:block">
             <Link href="/">
               <a
-                className="mr-10 text-gray-300 cursor-not-allowed"
-                title="coming soon"
-              >
+                className="text-gray-300 cursor-not-allowed "
+                title="coming soon">
                 Templates
               </a>
             </Link>
             <Link href="/components">
-              <a className="mr-10 text-gray-500">Components</a>
+              <a className="text-gray-500 ">Components</a>
             </Link>{" "}
             {/* <Link href="/">
               <a

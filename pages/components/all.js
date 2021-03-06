@@ -19,13 +19,11 @@ export default function index() {
           <div>
             {menuItems.map((menuitem, index) => {
               return (
-                <>
+                <React.Fragment key={index}>
                   <div className="w-full mx-auto mt-10 mb-6">
                     <h1 className="mt-3 text-xl font-bold">{menuitem.name}</h1>
                   </div>
-                  <div
-                    key={index}
-                    className="grid grid-cols-4 gap-10 mt-6 mb-16">
+                  <div className="grid grid-cols-4 gap-10 mt-6 mb-16">
                     {menuitem.children &&
                       menuitem.children.map((children, subindex) => {
                         return (
@@ -40,7 +38,7 @@ export default function index() {
                         );
                       })}
                   </div>
-                </>
+                </React.Fragment>
               );
             })}
           </div>
