@@ -12,7 +12,7 @@ export default function index() {
       <Navbar staticNav="true" />
 
       <div className="px-5 md:px-10 2xl:px-16">
-        <div className="grid gap-10 lg:grid-cols-fr">
+        <div className="grid gap-10 md:grid-cols-fr">
           <div>
             <SideMenu active="all" />
           </div>
@@ -23,7 +23,7 @@ export default function index() {
                   <div className="w-full mx-auto mt-10 mb-6">
                     <h1 className="mt-3 text-xl font-bold">{menuitem.name}</h1>
                   </div>
-                  <div className="grid grid-cols-4 gap-10 mt-6 mb-16">
+                  <div className="grid gap-10 mt-6 mb-16 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                     {menuitem.children &&
                       menuitem.children.map((children, subindex) => {
                         return (

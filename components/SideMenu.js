@@ -5,7 +5,7 @@ import { menuItems } from "utils/menulist";
 
 export default function SideMenu(props) {
   return (
-    <aside className="sticky w-full p-5 my-10 bg-gray-100 rounded-lg top-10">
+    <aside className="sticky w-full p-5 mt-10 bg-gray-100 rounded-lg top-10">
       <nav>
         {menuItems.map((menuitem, index) => {
           return (
